@@ -6,10 +6,14 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import br.com.john.blueshoes.data.NavMenuItemsDataBase
+import br.com.john.blueshoes.view.NavMenuItemsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_menu.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +33,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    private fun initNavMenuItems() {
+        with(rv_menu_items){
+            setHasFixedSize( false )
+            layoutManager = LinearLayoutManager( this@MainActivity)
+            adapter = NavMenuItemsAdapter( NavMenuItemsDataBase( this@MainActivity ).items)
+        }
+    }
+
+    private fun initNavMenuItemsLogged() {
+        with(rv_menu_items_logged){
+            setHasFixedSize( false )
+            layoutManager = LinearLayoutManager( this@MainActivity)
+            adapter = NavMenuItemsAdapter( NavMenuItemsDataBase( this@MainActivity ).items)
+        }
     }
 
     override fun onBackPressed() {

@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:textSize="12sp"
         android:textColor="@color/colorText"
-        android:fontFamily="@font/roboto_light"
+        android:fontFamily="@font/robotolight"
         android:text="@string/tx_conected_as"/>
 
     <TextView

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.john.blueshoes.R
 import br.com.john.blueshoes.domain.NavMenuItem
+import br.com.john.blueshoes.util.NavMenuItemDetails
 
 /**
  * Created by john on 17/02/2019.
@@ -22,8 +23,8 @@ class NavMenuItemsAdapter( val items: List<NavMenuItem> ):
         return ViewHolder(layout)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.setData(items[position])
     }
 
     override fun getItemCount() = items.size;
@@ -31,10 +32,11 @@ class NavMenuItemsAdapter( val items: List<NavMenuItem> ):
     inner class ViewHolder(itemView: android.view.View): RecyclerView.ViewHolder(itemView){
         private val ivIcon: ImageView
         private val tvLabel: TextView
-
+        val itemDetails: NavMenuItemDetails
         init {
             ivIcon = itemView.findViewById(R.id.iv_icon)
             tvLabel = itemView.findViewById(R.id.tv_label)
+            itemDetails = NavMenuItemDetails()
         }
 
         fun setData(item : NavMenuItem ) {
@@ -46,7 +48,9 @@ class NavMenuItemsAdapter( val items: List<NavMenuItem> ):
             } else {
                 ivIcon.visibility = View.GONE
             }
+
+            itemDetails.item = item
+            itemDetails.adapterPosition = adapterPosition
         }
     }
-
 }

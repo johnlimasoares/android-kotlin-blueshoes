@@ -21,5 +21,17 @@
         android:paddingBottom="8dp"
         android:scrollbars="vertical"/>
 
-    <!-- Código da segunda lista de itens. -->
+    <View
+        android:id="@+id/v_nav_vertical_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorViewLine"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_menu_items_logged"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
+
 </LinearLayout>
