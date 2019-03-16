@@ -85,4 +85,8 @@ class NavMenuItemsDataBase(context: Context) {
                     R.drawable.ic_exit_run_black_24dp
             )
     )
+
+    fun getLastItemId() = items.last().id
+
+    fun getFirstItemLoggedId() = itemsLogged.first().id
 }

@@ -1,11 +1,14 @@
 package br.com.john.blueshoes.view
 
+import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.selection.SelectionTracker
 import br.com.john.blueshoes.R
 import br.com.john.blueshoes.domain.NavMenuItem
 import br.com.john.blueshoes.util.NavMenuItemDetails
@@ -15,6 +18,8 @@ import br.com.john.blueshoes.util.NavMenuItemDetails
  */
 class NavMenuItemsAdapter( val items: List<NavMenuItem> ):
         RecyclerView.Adapter<NavMenuItemsAdapter.ViewHolder>() {
+
+    lateinit var selectionTracker: SelectionTracker<Long>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layout = LayoutInflater.from(parent.context)
@@ -51,6 +56,15 @@ class NavMenuItemsAdapter( val items: List<NavMenuItem> ):
 
             itemDetails.item = item
             itemDetails.adapterPosition = adapterPosition
+
+            itemView.setBackgroundColor(getBackgroundColorOf(item))
+        }
+
+        private fun getBackgroundColorOf(item: NavMenuItem): Int {
+            return if (selectionTracker.isSelected(item.id))
+                ContextCompat.getColor(itemView.context, R.color.colorPrimaryDark)
+             else
+                Color.TRANSPARENT
         }
     }
 }
